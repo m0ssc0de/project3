@@ -39,6 +39,21 @@
 
         var renderer = new THREE.WebGLRenderer();
         renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
+
+        // light
+        // linear color space
+        var API = {
+            lightProbeIntensity: 5.0,
+            directionalLightIntensity: 0.5,
+            envMapIntensity: 5
+        };
+        var directionalLight = new THREE.DirectionalLight(0xffffff, API.directionalLightIntensity);
+        directionalLight.position.set(10, 10, 10);
+        scene.add(directionalLight);
+        //
+
         document.body.appendChild(renderer.domElement);
 
         //
